@@ -1,456 +1,115 @@
 #FPN_RESNET   、  FPN_RESNET-SE  、  FPN_RESNET-CBAM
-1234
+
 ##fpn的结构如下
-![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet_resnet-se_resnet-cbam/blob/master/fpn.JPG)
+
+![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet-resnet-se_resnet-cbam/blob/master/fpn.JPG)
+
 ##resnet的结构如下
-![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet_resnet-se_resnet-cbam/blob/master/resnet.JPG)
+
+![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet-resnet-se_resnet-cbam/blob/master/resnet.JPG)
+
 ##resnet-se的结构如下
-![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet_resnet-se_resnet-cbam/blob/master/resnet-se.JPG)
+
+![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet-resnet-se_resnet-cbam/blob/master/resnet-se.JPG)
+
 ##resnet-cbam的结构如下
-![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet_resnet-se_resnet-cbam/blob/master/resnet-cbam-1.JPG)
-![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet_resnet-se_resnet-cbam/blob/master/resnet-cbam-2.JPG)
+
+![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet-resnet-se_resnet-cbam/blob/master/resnet-cbam-1.JPG)
+
+![图片名称可省略.jpg](https://github.com/youwh-PIRI/fpn_resnet-resnet-se_resnet-cbam/blob/master/resnet-cbam-2.JPG)
 
 
-下面是FPN_RESNET-CBAM模型的结构以及每层的输出大小和参数量大小，以此为例
-        Layer (type)               Output Shape         Param
-            Conv2d-1         [-1, 64, 112, 112]           9,408
-       BatchNorm2d-2         [-1, 64, 112, 112]             128
-              ReLU-3         [-1, 64, 112, 112]               0
-         MaxPool2d-4           [-1, 64, 56, 56]               0
-            Conv2d-5           [-1, 64, 56, 56]           4,096
-       BatchNorm2d-6           [-1, 64, 56, 56]             128
-              ReLU-7           [-1, 64, 56, 56]               0
-            Conv2d-8           [-1, 64, 56, 56]          36,864
-       BatchNorm2d-9           [-1, 64, 56, 56]             128
-             ReLU-10           [-1, 64, 56, 56]               0
-           Conv2d-11          [-1, 256, 56, 56]          16,384
-      BatchNorm2d-12          [-1, 256, 56, 56]             512
-           Conv2d-13          [-1, 256, 56, 56]          16,384
-      BatchNorm2d-14          [-1, 256, 56, 56]             512
-          Flatten-15                  [-1, 256]               0
-           Linear-16                   [-1, 16]           4,112
-             ReLU-17                   [-1, 16]               0
-           Linear-18                  [-1, 256]           4,352
-          Flatten-19                  [-1, 256]               0
-           Linear-20                   [-1, 16]           4,112
-             ReLU-21                   [-1, 16]               0
-           Linear-22                  [-1, 256]           4,352
-      ChannelGate-23          [-1, 256, 56, 56]               0
-      ChannelPool-24            [-1, 2, 56, 56]               0
-           Conv2d-25            [-1, 1, 56, 56]              98
-      BatchNorm2d-26            [-1, 1, 56, 56]               2
-        BasicConv-27            [-1, 1, 56, 56]               0
-      SpatialGate-28          [-1, 256, 56, 56]               0
-             CBAM-29          [-1, 256, 56, 56]               0
-             ReLU-30          [-1, 256, 56, 56]               0
-       Bottleneck-31          [-1, 256, 56, 56]               0
-           Conv2d-32           [-1, 64, 56, 56]          16,384
-      BatchNorm2d-33           [-1, 64, 56, 56]             128
-             ReLU-34           [-1, 64, 56, 56]               0
-           Conv2d-35           [-1, 64, 56, 56]          36,864
-      BatchNorm2d-36           [-1, 64, 56, 56]             128
-             ReLU-37           [-1, 64, 56, 56]               0
-           Conv2d-38          [-1, 256, 56, 56]          16,384
-      BatchNorm2d-39          [-1, 256, 56, 56]             512
-          Flatten-40                  [-1, 256]               0
-           Linear-41                   [-1, 16]           4,112
-             ReLU-42                   [-1, 16]               0
-           Linear-43                  [-1, 256]           4,352
-          Flatten-44                  [-1, 256]               0
-           Linear-45                   [-1, 16]           4,112
-             ReLU-46                   [-1, 16]               0
-           Linear-47                  [-1, 256]           4,352
-      ChannelGate-48          [-1, 256, 56, 56]               0
-      ChannelPool-49            [-1, 2, 56, 56]               0
-           Conv2d-50            [-1, 1, 56, 56]              98
-      BatchNorm2d-51            [-1, 1, 56, 56]               2
-        BasicConv-52            [-1, 1, 56, 56]               0
-      SpatialGate-53          [-1, 256, 56, 56]               0
-             CBAM-54          [-1, 256, 56, 56]               0
-             ReLU-55          [-1, 256, 56, 56]               0
-       Bottleneck-56          [-1, 256, 56, 56]               0
-           Conv2d-57           [-1, 64, 56, 56]          16,384
-      BatchNorm2d-58           [-1, 64, 56, 56]             128
-             ReLU-59           [-1, 64, 56, 56]               0
-           Conv2d-60           [-1, 64, 56, 56]          36,864
-      BatchNorm2d-61           [-1, 64, 56, 56]             128
-             ReLU-62           [-1, 64, 56, 56]               0
-           Conv2d-63          [-1, 256, 56, 56]          16,384
-      BatchNorm2d-64          [-1, 256, 56, 56]             512
-          Flatten-65                  [-1, 256]               0
-           Linear-66                   [-1, 16]           4,112
-             ReLU-67                   [-1, 16]               0
-           Linear-68                  [-1, 256]           4,352
-          Flatten-69                  [-1, 256]               0
-           Linear-70                   [-1, 16]           4,112
-             ReLU-71                   [-1, 16]               0
-           Linear-72                  [-1, 256]           4,352
-      ChannelGate-73          [-1, 256, 56, 56]               0
-      ChannelPool-74            [-1, 2, 56, 56]               0
-           Conv2d-75            [-1, 1, 56, 56]              98
-      BatchNorm2d-76            [-1, 1, 56, 56]               2
-        BasicConv-77            [-1, 1, 56, 56]               0
-      SpatialGate-78          [-1, 256, 56, 56]               0
-             CBAM-79          [-1, 256, 56, 56]               0
-             ReLU-80          [-1, 256, 56, 56]               0
-       Bottleneck-81          [-1, 256, 56, 56]               0
-           Conv2d-82          [-1, 128, 56, 56]          32,768
-      BatchNorm2d-83          [-1, 128, 56, 56]             256
-             ReLU-84          [-1, 128, 56, 56]               0
-           Conv2d-85          [-1, 128, 28, 28]         147,456
-      BatchNorm2d-86          [-1, 128, 28, 28]             256
-             ReLU-87          [-1, 128, 28, 28]               0
-           Conv2d-88          [-1, 512, 28, 28]          65,536
-      BatchNorm2d-89          [-1, 512, 28, 28]           1,024
-           Conv2d-90          [-1, 512, 28, 28]         131,072
-      BatchNorm2d-91          [-1, 512, 28, 28]           1,024
-          Flatten-92                  [-1, 512]               0
-           Linear-93                   [-1, 32]          16,416
-             ReLU-94                   [-1, 32]               0
-           Linear-95                  [-1, 512]          16,896
-          Flatten-96                  [-1, 512]               0
-           Linear-97                   [-1, 32]          16,416
-             ReLU-98                   [-1, 32]               0
-           Linear-99                  [-1, 512]          16,896
-     ChannelGate-100          [-1, 512, 28, 28]               0
-     ChannelPool-101            [-1, 2, 28, 28]               0
-          Conv2d-102            [-1, 1, 28, 28]              98
-     BatchNorm2d-103            [-1, 1, 28, 28]               2
-       BasicConv-104            [-1, 1, 28, 28]               0
-     SpatialGate-105          [-1, 512, 28, 28]               0
-            CBAM-106          [-1, 512, 28, 28]               0
-            ReLU-107          [-1, 512, 28, 28]               0
-      Bottleneck-108          [-1, 512, 28, 28]               0
-          Conv2d-109          [-1, 128, 28, 28]          65,536
-     BatchNorm2d-110          [-1, 128, 28, 28]             256
-            ReLU-111          [-1, 128, 28, 28]               0
-          Conv2d-112          [-1, 128, 28, 28]         147,456
-     BatchNorm2d-113          [-1, 128, 28, 28]             256
-            ReLU-114          [-1, 128, 28, 28]               0
-          Conv2d-115          [-1, 512, 28, 28]          65,536
-     BatchNorm2d-116          [-1, 512, 28, 28]           1,024
-         Flatten-117                  [-1, 512]               0
-          Linear-118                   [-1, 32]          16,416
-            ReLU-119                   [-1, 32]               0
-          Linear-120                  [-1, 512]          16,896
-         Flatten-121                  [-1, 512]               0
-          Linear-122                   [-1, 32]          16,416
-            ReLU-123                   [-1, 32]               0
-          Linear-124                  [-1, 512]          16,896
-     ChannelGate-125          [-1, 512, 28, 28]               0
-     ChannelPool-126            [-1, 2, 28, 28]               0
-          Conv2d-127            [-1, 1, 28, 28]              98
-     BatchNorm2d-128            [-1, 1, 28, 28]               2
-       BasicConv-129            [-1, 1, 28, 28]               0
-     SpatialGate-130          [-1, 512, 28, 28]               0
-            CBAM-131          [-1, 512, 28, 28]               0
-            ReLU-132          [-1, 512, 28, 28]               0
-      Bottleneck-133          [-1, 512, 28, 28]               0
-          Conv2d-134          [-1, 128, 28, 28]          65,536
-     BatchNorm2d-135          [-1, 128, 28, 28]             256
-            ReLU-136          [-1, 128, 28, 28]               0
-          Conv2d-137          [-1, 128, 28, 28]         147,456
-     BatchNorm2d-138          [-1, 128, 28, 28]             256
-            ReLU-139          [-1, 128, 28, 28]               0
-          Conv2d-140          [-1, 512, 28, 28]          65,536
-     BatchNorm2d-141          [-1, 512, 28, 28]           1,024
-         Flatten-142                  [-1, 512]               0
-          Linear-143                   [-1, 32]          16,416
-            ReLU-144                   [-1, 32]               0
-          Linear-145                  [-1, 512]          16,896
-         Flatten-146                  [-1, 512]               0
-          Linear-147                   [-1, 32]          16,416
-            ReLU-148                   [-1, 32]               0
-          Linear-149                  [-1, 512]          16,896
-     ChannelGate-150          [-1, 512, 28, 28]               0
-     ChannelPool-151            [-1, 2, 28, 28]               0
-          Conv2d-152            [-1, 1, 28, 28]              98
-     BatchNorm2d-153            [-1, 1, 28, 28]               2
-       BasicConv-154            [-1, 1, 28, 28]               0
-     SpatialGate-155          [-1, 512, 28, 28]               0
-            CBAM-156          [-1, 512, 28, 28]               0
-            ReLU-157          [-1, 512, 28, 28]               0
-      Bottleneck-158          [-1, 512, 28, 28]               0
-          Conv2d-159          [-1, 128, 28, 28]          65,536
-     BatchNorm2d-160          [-1, 128, 28, 28]             256
-            ReLU-161          [-1, 128, 28, 28]               0
-          Conv2d-162          [-1, 128, 28, 28]         147,456
-     BatchNorm2d-163          [-1, 128, 28, 28]             256
-            ReLU-164          [-1, 128, 28, 28]               0
-          Conv2d-165          [-1, 512, 28, 28]          65,536
-     BatchNorm2d-166          [-1, 512, 28, 28]           1,024
-         Flatten-167                  [-1, 512]               0
-          Linear-168                   [-1, 32]          16,416
-            ReLU-169                   [-1, 32]               0
-          Linear-170                  [-1, 512]          16,896
-         Flatten-171                  [-1, 512]               0
-          Linear-172                   [-1, 32]          16,416
-            ReLU-173                   [-1, 32]               0
-          Linear-174                  [-1, 512]          16,896
-     ChannelGate-175          [-1, 512, 28, 28]               0
-     ChannelPool-176            [-1, 2, 28, 28]               0
-          Conv2d-177            [-1, 1, 28, 28]              98
-     BatchNorm2d-178            [-1, 1, 28, 28]               2
-       BasicConv-179            [-1, 1, 28, 28]               0
-     SpatialGate-180          [-1, 512, 28, 28]               0
-            CBAM-181          [-1, 512, 28, 28]               0
-            ReLU-182          [-1, 512, 28, 28]               0
-      Bottleneck-183          [-1, 512, 28, 28]               0
-          Conv2d-184          [-1, 256, 28, 28]         131,072
-     BatchNorm2d-185          [-1, 256, 28, 28]             512
-            ReLU-186          [-1, 256, 28, 28]               0
-          Conv2d-187          [-1, 256, 14, 14]         589,824
-     BatchNorm2d-188          [-1, 256, 14, 14]             512
-            ReLU-189          [-1, 256, 14, 14]               0
-          Conv2d-190         [-1, 1024, 14, 14]         262,144
-     BatchNorm2d-191         [-1, 1024, 14, 14]           2,048
-          Conv2d-192         [-1, 1024, 14, 14]         524,288
-     BatchNorm2d-193         [-1, 1024, 14, 14]           2,048
-         Flatten-194                 [-1, 1024]               0
-          Linear-195                   [-1, 64]          65,600
-            ReLU-196                   [-1, 64]               0
-          Linear-197                 [-1, 1024]          66,560
-         Flatten-198                 [-1, 1024]               0
-          Linear-199                   [-1, 64]          65,600
-            ReLU-200                   [-1, 64]               0
-          Linear-201                 [-1, 1024]          66,560
-     ChannelGate-202         [-1, 1024, 14, 14]               0
-     ChannelPool-203            [-1, 2, 14, 14]               0
-          Conv2d-204            [-1, 1, 14, 14]              98
-     BatchNorm2d-205            [-1, 1, 14, 14]               2
-       BasicConv-206            [-1, 1, 14, 14]               0
-     SpatialGate-207         [-1, 1024, 14, 14]               0
-            CBAM-208         [-1, 1024, 14, 14]               0
-            ReLU-209         [-1, 1024, 14, 14]               0
-      Bottleneck-210         [-1, 1024, 14, 14]               0
-          Conv2d-211          [-1, 256, 14, 14]         262,144
-     BatchNorm2d-212          [-1, 256, 14, 14]             512
-            ReLU-213          [-1, 256, 14, 14]               0
-          Conv2d-214          [-1, 256, 14, 14]         589,824
-     BatchNorm2d-215          [-1, 256, 14, 14]             512
-            ReLU-216          [-1, 256, 14, 14]               0
-          Conv2d-217         [-1, 1024, 14, 14]         262,144
-     BatchNorm2d-218         [-1, 1024, 14, 14]           2,048
-         Flatten-219                 [-1, 1024]               0
-          Linear-220                   [-1, 64]          65,600
-            ReLU-221                   [-1, 64]               0
-          Linear-222                 [-1, 1024]          66,560
-         Flatten-223                 [-1, 1024]               0
-          Linear-224                   [-1, 64]          65,600
-            ReLU-225                   [-1, 64]               0
-          Linear-226                 [-1, 1024]          66,560
-     ChannelGate-227         [-1, 1024, 14, 14]               0
-     ChannelPool-228            [-1, 2, 14, 14]               0
-          Conv2d-229            [-1, 1, 14, 14]              98
-     BatchNorm2d-230            [-1, 1, 14, 14]               2
-       BasicConv-231            [-1, 1, 14, 14]               0
-     SpatialGate-232         [-1, 1024, 14, 14]               0
-            CBAM-233         [-1, 1024, 14, 14]               0
-            ReLU-234         [-1, 1024, 14, 14]               0
-      Bottleneck-235         [-1, 1024, 14, 14]               0
-          Conv2d-236          [-1, 256, 14, 14]         262,144
-     BatchNorm2d-237          [-1, 256, 14, 14]             512
-            ReLU-238          [-1, 256, 14, 14]               0
-          Conv2d-239          [-1, 256, 14, 14]         589,824
-     BatchNorm2d-240          [-1, 256, 14, 14]             512
-            ReLU-241          [-1, 256, 14, 14]               0
-          Conv2d-242         [-1, 1024, 14, 14]         262,144
-     BatchNorm2d-243         [-1, 1024, 14, 14]           2,048
-         Flatten-244                 [-1, 1024]               0
-          Linear-245                   [-1, 64]          65,600
-            ReLU-246                   [-1, 64]               0
-          Linear-247                 [-1, 1024]          66,560
-         Flatten-248                 [-1, 1024]               0
-          Linear-249                   [-1, 64]          65,600
-            ReLU-250                   [-1, 64]               0
-          Linear-251                 [-1, 1024]          66,560
-     ChannelGate-252         [-1, 1024, 14, 14]               0
-     ChannelPool-253            [-1, 2, 14, 14]               0
-          Conv2d-254            [-1, 1, 14, 14]              98
-     BatchNorm2d-255            [-1, 1, 14, 14]               2
-       BasicConv-256            [-1, 1, 14, 14]               0
-     SpatialGate-257         [-1, 1024, 14, 14]               0
-            CBAM-258         [-1, 1024, 14, 14]               0
-            ReLU-259         [-1, 1024, 14, 14]               0
-      Bottleneck-260         [-1, 1024, 14, 14]               0
-          Conv2d-261          [-1, 256, 14, 14]         262,144
-     BatchNorm2d-262          [-1, 256, 14, 14]             512
-            ReLU-263          [-1, 256, 14, 14]               0
-          Conv2d-264          [-1, 256, 14, 14]         589,824
-     BatchNorm2d-265          [-1, 256, 14, 14]             512
-            ReLU-266          [-1, 256, 14, 14]               0
-          Conv2d-267         [-1, 1024, 14, 14]         262,144
-     BatchNorm2d-268         [-1, 1024, 14, 14]           2,048
-         Flatten-269                 [-1, 1024]               0
-          Linear-270                   [-1, 64]          65,600
-            ReLU-271                   [-1, 64]               0
-          Linear-272                 [-1, 1024]          66,560
-         Flatten-273                 [-1, 1024]               0
-          Linear-274                   [-1, 64]          65,600
-            ReLU-275                   [-1, 64]               0
-          Linear-276                 [-1, 1024]          66,560
-     ChannelGate-277         [-1, 1024, 14, 14]               0
-     ChannelPool-278            [-1, 2, 14, 14]               0
-          Conv2d-279            [-1, 1, 14, 14]              98
-     BatchNorm2d-280            [-1, 1, 14, 14]               2
-       BasicConv-281            [-1, 1, 14, 14]               0
-     SpatialGate-282         [-1, 1024, 14, 14]               0
-            CBAM-283         [-1, 1024, 14, 14]               0
-            ReLU-284         [-1, 1024, 14, 14]               0
-      Bottleneck-285         [-1, 1024, 14, 14]               0
-          Conv2d-286          [-1, 256, 14, 14]         262,144
-     BatchNorm2d-287          [-1, 256, 14, 14]             512
-            ReLU-288          [-1, 256, 14, 14]               0
-          Conv2d-289          [-1, 256, 14, 14]         589,824
-     BatchNorm2d-290          [-1, 256, 14, 14]             512
-            ReLU-291          [-1, 256, 14, 14]               0
-          Conv2d-292         [-1, 1024, 14, 14]         262,144
-     BatchNorm2d-293         [-1, 1024, 14, 14]           2,048
-         Flatten-294                 [-1, 1024]               0
-          Linear-295                   [-1, 64]          65,600
-            ReLU-296                   [-1, 64]               0
-          Linear-297                 [-1, 1024]          66,560
-         Flatten-298                 [-1, 1024]               0
-          Linear-299                   [-1, 64]          65,600
-            ReLU-300                   [-1, 64]               0
-          Linear-301                 [-1, 1024]          66,560
-     ChannelGate-302         [-1, 1024, 14, 14]               0
-     ChannelPool-303            [-1, 2, 14, 14]               0
-          Conv2d-304            [-1, 1, 14, 14]              98
-     BatchNorm2d-305            [-1, 1, 14, 14]               2
-       BasicConv-306            [-1, 1, 14, 14]               0
-     SpatialGate-307         [-1, 1024, 14, 14]               0
-            CBAM-308         [-1, 1024, 14, 14]               0
-            ReLU-309         [-1, 1024, 14, 14]               0
-      Bottleneck-310         [-1, 1024, 14, 14]               0
-          Conv2d-311          [-1, 256, 14, 14]         262,144
-     BatchNorm2d-312          [-1, 256, 14, 14]             512
-            ReLU-313          [-1, 256, 14, 14]               0
-          Conv2d-314          [-1, 256, 14, 14]         589,824
-     BatchNorm2d-315          [-1, 256, 14, 14]             512
-            ReLU-316          [-1, 256, 14, 14]               0
-          Conv2d-317         [-1, 1024, 14, 14]         262,144
-     BatchNorm2d-318         [-1, 1024, 14, 14]           2,048
-         Flatten-319                 [-1, 1024]               0
-          Linear-320                   [-1, 64]          65,600
-            ReLU-321                   [-1, 64]               0
-          Linear-322                 [-1, 1024]          66,560
-         Flatten-323                 [-1, 1024]               0
-          Linear-324                   [-1, 64]          65,600
-            ReLU-325                   [-1, 64]               0
-          Linear-326                 [-1, 1024]          66,560
-     ChannelGate-327         [-1, 1024, 14, 14]               0
-     ChannelPool-328            [-1, 2, 14, 14]               0
-          Conv2d-329            [-1, 1, 14, 14]              98
-     BatchNorm2d-330            [-1, 1, 14, 14]               2
-       BasicConv-331            [-1, 1, 14, 14]               0
-     SpatialGate-332         [-1, 1024, 14, 14]               0
-            CBAM-333         [-1, 1024, 14, 14]               0
-            ReLU-334         [-1, 1024, 14, 14]               0
-      Bottleneck-335         [-1, 1024, 14, 14]               0
-          Conv2d-336          [-1, 512, 14, 14]         524,288
-     BatchNorm2d-337          [-1, 512, 14, 14]           1,024
-            ReLU-338          [-1, 512, 14, 14]               0
-          Conv2d-339            [-1, 512, 7, 7]       2,359,296
-     BatchNorm2d-340            [-1, 512, 7, 7]           1,024
-            ReLU-341            [-1, 512, 7, 7]               0
-          Conv2d-342           [-1, 2048, 7, 7]       1,048,576
-     BatchNorm2d-343           [-1, 2048, 7, 7]           4,096
-          Conv2d-344           [-1, 2048, 7, 7]       2,097,152
-     BatchNorm2d-345           [-1, 2048, 7, 7]           4,096
-         Flatten-346                 [-1, 2048]               0
-          Linear-347                  [-1, 128]         262,272
-            ReLU-348                  [-1, 128]               0
-          Linear-349                 [-1, 2048]         264,192
-         Flatten-350                 [-1, 2048]               0
-          Linear-351                  [-1, 128]         262,272
-            ReLU-352                  [-1, 128]               0
-          Linear-353                 [-1, 2048]         264,192
-     ChannelGate-354           [-1, 2048, 7, 7]               0
-     ChannelPool-355              [-1, 2, 7, 7]               0
-          Conv2d-356              [-1, 1, 7, 7]              98
-     BatchNorm2d-357              [-1, 1, 7, 7]               2
-       BasicConv-358              [-1, 1, 7, 7]               0
-     SpatialGate-359           [-1, 2048, 7, 7]               0
-            CBAM-360           [-1, 2048, 7, 7]               0
-            ReLU-361           [-1, 2048, 7, 7]               0
-      Bottleneck-362           [-1, 2048, 7, 7]               0
-          Conv2d-363            [-1, 512, 7, 7]       1,048,576
-     BatchNorm2d-364            [-1, 512, 7, 7]           1,024
-            ReLU-365            [-1, 512, 7, 7]               0
-          Conv2d-366            [-1, 512, 7, 7]       2,359,296
-     BatchNorm2d-367            [-1, 512, 7, 7]           1,024
-            ReLU-368            [-1, 512, 7, 7]               0
-          Conv2d-369           [-1, 2048, 7, 7]       1,048,576
-     BatchNorm2d-370           [-1, 2048, 7, 7]           4,096
-         Flatten-371                 [-1, 2048]               0
-          Linear-372                  [-1, 128]         262,272
-            ReLU-373                  [-1, 128]               0
-          Linear-374                 [-1, 2048]         264,192
-         Flatten-375                 [-1, 2048]               0
-          Linear-376                  [-1, 128]         262,272
-            ReLU-377                  [-1, 128]               0
-          Linear-378                 [-1, 2048]         264,192
-     ChannelGate-379           [-1, 2048, 7, 7]               0
-     ChannelPool-380              [-1, 2, 7, 7]               0
-          Conv2d-381              [-1, 1, 7, 7]              98
-     BatchNorm2d-382              [-1, 1, 7, 7]               2
-       BasicConv-383              [-1, 1, 7, 7]               0
-     SpatialGate-384           [-1, 2048, 7, 7]               0
-            CBAM-385           [-1, 2048, 7, 7]               0
-            ReLU-386           [-1, 2048, 7, 7]               0
-      Bottleneck-387           [-1, 2048, 7, 7]               0
-          Conv2d-388            [-1, 512, 7, 7]       1,048,576
-     BatchNorm2d-389            [-1, 512, 7, 7]           1,024
-            ReLU-390            [-1, 512, 7, 7]               0
-          Conv2d-391            [-1, 512, 7, 7]       2,359,296
-     BatchNorm2d-392            [-1, 512, 7, 7]           1,024
-            ReLU-393            [-1, 512, 7, 7]               0
-          Conv2d-394           [-1, 2048, 7, 7]       1,048,576
-     BatchNorm2d-395           [-1, 2048, 7, 7]           4,096
-         Flatten-396                 [-1, 2048]               0
-          Linear-397                  [-1, 128]         262,272
-            ReLU-398                  [-1, 128]               0
-          Linear-399                 [-1, 2048]         264,192
-         Flatten-400                 [-1, 2048]               0
-          Linear-401                  [-1, 128]         262,272
-            ReLU-402                  [-1, 128]               0
-          Linear-403                 [-1, 2048]         264,192
-     ChannelGate-404           [-1, 2048, 7, 7]               0
-     ChannelPool-405              [-1, 2, 7, 7]               0
-          Conv2d-406              [-1, 1, 7, 7]              98
-     BatchNorm2d-407              [-1, 1, 7, 7]               2
-       BasicConv-408              [-1, 1, 7, 7]               0
-     SpatialGate-409           [-1, 2048, 7, 7]               0
-            CBAM-410           [-1, 2048, 7, 7]               0
-            ReLU-411           [-1, 2048, 7, 7]               0
-      Bottleneck-412           [-1, 2048, 7, 7]               0
-          Conv2d-413            [-1, 256, 7, 7]         524,544
-     BatchNorm2d-414            [-1, 256, 7, 7]             512
-            ReLU-415            [-1, 256, 7, 7]               0
-          Conv2d-416          [-1, 256, 14, 14]         262,400
-     BatchNorm2d-417          [-1, 256, 14, 14]             512
-            ReLU-418          [-1, 256, 14, 14]               0
-          Conv2d-419          [-1, 256, 14, 14]         590,080
-     BatchNorm2d-420          [-1, 256, 14, 14]             512
-            ReLU-421          [-1, 256, 14, 14]               0
-          Conv2d-422          [-1, 256, 28, 28]         131,328
-     BatchNorm2d-423          [-1, 256, 28, 28]             512
-            ReLU-424          [-1, 256, 28, 28]               0
-          Conv2d-425          [-1, 256, 28, 28]         590,080
-     BatchNorm2d-426          [-1, 256, 28, 28]             512
-            ReLU-427          [-1, 256, 28, 28]               0
-          Conv2d-428          [-1, 256, 56, 56]          65,792
-     BatchNorm2d-429          [-1, 256, 56, 56]             512
-            ReLU-430          [-1, 256, 56, 56]               0
-          Conv2d-431          [-1, 256, 56, 56]         590,080
-     BatchNorm2d-432          [-1, 256, 56, 56]             512
-            ReLU-433          [-1, 256, 56, 56]               0
-          Conv2d-434          [-1, 256, 56, 56]       2,359,552
-     BatchNorm2d-435          [-1, 256, 56, 56]             512
-            ReLU-436          [-1, 256, 56, 56]               0
-          Conv2d-437            [-1, 7, 56, 56]           1,799
 
+下面是FPN_RESNET-CBAM模型的结构模块以及每层的输出和参数量大小，以此为例
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu1): ReLU(inplace)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (cbam): CBAM(
+        (ChannelGate): ChannelGate(
+          (mlp): Sequential(
+            (0): Flatten()
+            (1): Linear(in_features=256, out_features=16, bias=True)
+            (2): ReLU()
+            (3): Linear(in_features=16, out_features=256, bias=True)
+          )
+        )
+        (SpatialGate): SpatialGate(
+          (compress): ChannelPool()
+          (spatial): BasicConv(
+            (conv): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (bn): BatchNorm2d(1, eps=1e-05, momentum=0.01, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace)
+      (cbam): CBAM(
+        (ChannelGate): ChannelGate(
+          (mlp): Sequential(
+            (0): Flatten()
+            (1): Linear(in_features=256, out_features=16, bias=True)
+            (2): ReLU()
+            (3): Linear(in_features=16, out_features=256, bias=True)
+          )
+        )
+        (SpatialGate): SpatialGate(
+          (compress): ChannelPool()
+          (spatial): BasicConv(
+            (conv): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (bn): BatchNorm2d(1, eps=1e-05, momentum=0.01, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace)
+      (cbam): CBAM(
+        (ChannelGate): ChannelGate(
+          (mlp): Sequential(
+            (0): Flatten()
+            (1): Linear(in_features=256, out_features=16, bias=True)
+            (2): ReLU()
+            (3): Linear(in_features=16, out_features=256, bias=True)
+          )
+        )
+        (SpatialGate): SpatialGate(
+          (compress): ChannelPool()
+          (spatial): BasicConv(
+            (conv): Conv2d(2, 1, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+            (bn): BatchNorm2d(1, eps=1e-05, momentum=0.01, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+  )
 Total params: 33,691,367
 Trainable params: 33,691,367
 Non-trainable params: 0
